@@ -63,6 +63,13 @@ namespace GmailNotifierClone
                 return;
             }
 
+            if (Settings.Login == "" || Settings.Password == "")
+            {
+                AuthForm f = new AuthForm();
+                f.Show();
+                return;
+            }
+
             m_isCheckInProgress = true;
             Thread t = new Thread(CheckMailThreadFunc);
             t.Start();
@@ -79,7 +86,7 @@ namespace GmailNotifierClone
             {
                 Log.Add("Checking mailbox...");
                 using (
-                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", "xy2041@gmail.com", "some pass",
+                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", Settings.Login, Settings.Password,
                         AE.Net.Mail.ImapClient.AuthMethods.Login, 993, true))
                 {
                     imap.SelectMailbox("INBOX");
@@ -141,8 +148,20 @@ namespace GmailNotifierClone
             }
             catch (Exception e)
             {
+                if (e.Message != null && e.Message.Contains("[AUTHENTICATIONFAILED] Invalid credentials"))
+                {
+                    Settings.Password = "";
+                    AuthForm f = new AuthForm();
+                    MainForm.Instance.Invoke((MethodInvoker)f.Show);
+                }
+                
+                {
+                    MainForm.Instance.trayIcon.Text = e.Message != null ? e.Message : "Error!";
+                    System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+                    MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_5")));
+                }
+
                 Log.Add(e);
-                throw e;
             }
             finally
             {
