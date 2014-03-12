@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.timerCheckMail = new System.Windows.Forms.Timer(this.components);
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.checkMailNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tellAgainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,29 @@
             this.trayIcon.Visible = true;
             this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkMailNowToolStripMenuItem,
+            this.exitToolStripMenuItem1,
+            this.tellAgainToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 92);
+            // 
+            // checkMailNowToolStripMenuItem
+            // 
+            this.checkMailNowToolStripMenuItem.Name = "checkMailNowToolStripMenuItem";
+            this.checkMailNowToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.checkMailNowToolStripMenuItem.Text = "Check Mail Now";
+            this.checkMailNowToolStripMenuItem.Click += new System.EventHandler(this.checkMailNowToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem1
+            // 
+            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
+            this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(12, 49);
@@ -72,27 +95,12 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // contextMenuStrip1
+            // tellAgainToolStripMenuItem
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkMailNowToolStripMenuItem,
-            this.exitToolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 48);
-            // 
-            // exitToolStripMenuItem1
-            // 
-            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
-            this.exitToolStripMenuItem1.Text = "Exit";
-            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
-            // 
-            // checkMailNowToolStripMenuItem
-            // 
-            this.checkMailNowToolStripMenuItem.Name = "checkMailNowToolStripMenuItem";
-            this.checkMailNowToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.checkMailNowToolStripMenuItem.Text = "Check Mail Now";
-            this.checkMailNowToolStripMenuItem.Click += new System.EventHandler(this.checkMailNowToolStripMenuItem_Click);
+            this.tellAgainToolStripMenuItem.Name = "tellAgainToolStripMenuItem";
+            this.tellAgainToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.tellAgainToolStripMenuItem.Text = "Tell again";
+            this.tellAgainToolStripMenuItem.Click += new System.EventHandler(this.tellAgainToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -118,6 +126,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem checkMailNowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tellAgainToolStripMenuItem;
     }
 }
 

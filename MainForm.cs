@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using AE.Net.Mail;
+
 
 namespace GmailNotifierClone
 {
@@ -85,6 +78,11 @@ namespace GmailNotifierClone
         private void checkMailNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MailManager.Instance.CheckAndNotify();
+        }
+
+        private void tellAgainToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MailManager.Instance.TellMeAgain();
         }
     }
 }

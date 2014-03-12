@@ -7,10 +7,16 @@ namespace GmailNotifierClone
     static class Log
     {
         private static RichTextBox m_textBox;
+        private static string m_filename = null;
 
         public static void SetTextBox(RichTextBox tb)
         {
             m_textBox = tb;
+        }
+
+        public static void SetFile(string tb)
+        {
+            m_filename = tb;
         }
 
         public static void Add(Exception e)
@@ -33,6 +39,18 @@ namespace GmailNotifierClone
             if (m_textBox != null)
             {
                 Utils.WriteTextToBox(m_textBox, outText, level.ToColor());
+            }
+
+            if (m_filename != null)
+            {
+                try
+                {
+                    
+                }
+                catch (System.Exception ex)
+                {
+                	
+                }
             }
         }
     }
