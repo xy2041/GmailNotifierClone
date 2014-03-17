@@ -10,22 +10,26 @@ namespace GmailNotifierClone
 {
     public class MailManager
     {
+        private static Object m_lock = new Object();
+
         private static bool m_isCheckInProgress;
 
         private static MailManager m_instance;
 
-        private MailManager() { }
+        private MailManager()
+        {
+        }
 
         public static MailManager Instance
         {
-           get 
-           {
-              if (m_instance == null)
-              {
-                  m_instance = new MailManager();
-              }
-              return m_instance;
-           }
+            get
+            {
+                if (m_instance == null)
+                {
+                    m_instance = new MailManager();
+                }
+                return m_instance;
+            }
         }
 
         private Dictionary<string, MailMessage> m_mails = new Dictionary<string, MailMessage>();
@@ -55,13 +59,15 @@ namespace GmailNotifierClone
             t.Start();
         }
 
-        static void Notify()
+        private static void Notify()
         {
-            
+
         }
 
-        static void CheckMailThreadFunc()
+        private static void CheckMailThreadFunc()
         {
+
+            Log.Add("CheckMailThreadFunc lock");
             try
             {
                 Log.Add("Checking mailbox...");
@@ -78,15 +84,15 @@ namespace GmailNotifierClone
 
                     Log.Add("Total messages fetched: " + messages.Count());
 
-                    var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+                    var resources = new System.ComponentModel.ComponentResourceManager(typeof (Assets));
                     if (messages.Any())
                     {
-                        MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_2")));
+                        MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject("gnotify_2")));
                         MainForm.Instance.trayIcon.Text = "New mail: " + messages.Count();
                     }
                     else
                     {
-                        MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_4")));
+                        MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject("gnotify_4")));
                         MainForm.Instance.trayIcon.Text = "No unread mail";
                     }
 
@@ -116,22 +122,28 @@ namespace GmailNotifierClone
                     }
                 }
 
-                
+
                 ShowNotifications();
             }
-            catch (Exception e)
+            catch
+                (Exception
+                    e)
             {
                 if (e.Message.Contains("[AUTHENTICATIONFAILED] Invalid credentials"))
                 {
                     Settings.Password = "";
                     AuthForm f = new AuthForm();
-                    MainForm.Instance.Invoke((MethodInvoker)f.Show);
+                    MainForm.Instance.Invoke((MethodInvoker) f.Show);
                 }
-                
+                try
                 {
-                    MainForm.Instance.trayIcon.Text = e.Message.Substring(0,63);
-                    var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-                    MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_5")));
+                    MainForm.Instance.trayIcon.Text = e.Message.Length > 63 ? e.Message.Substring(0, 63) : e.Message;
+                    var resources = new System.ComponentModel.ComponentResourceManager(typeof (Assets));
+                    MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject("gnotify_5")));
+                }
+                catch (Exception ee)
+                {
+                    Log.Add(ee);
                 }
 
                 Log.Add(e);
@@ -140,21 +152,28 @@ namespace GmailNotifierClone
             {
                 m_isCheckInProgress = false;
             }
+
         }
 
         private static void ShowNotifications()
         {
             Log.Add("Show notifications: " + MailManager.Instance.m_notificationsList.Count);
+            int offset = 0;
+            if (MailManager.Instance.m_notificationsList.Count < MailManager.Instance.GetNewMailCount())
+            {
+                offset = MailManager.Instance.GetNewMailCount() - MailManager.Instance.m_notificationsList.Count;
+            }
             for (int index = 0; index < MailManager.Instance.m_notificationsList.Count; index++)
             {
                 var s = MailManager.Instance.m_notificationsList[index];
-                Notifier tws = new Notifier(MailManager.Instance.m_mails[s], index);
+                Notifier tws = new Notifier(MailManager.Instance.m_mails[s], index + 1 + offset);
 
                 // Create a thread to execute the task, and then 
                 // start the thread.
                 Thread t = new Thread(new ThreadStart(tws.ThreadProc));
                 t.Start();
                 Log.Add("Wait...");
+                Application.DoEvents();
                 Thread.Sleep(5000);
                 Application.DoEvents();
             }
@@ -162,14 +181,22 @@ namespace GmailNotifierClone
             Log.Add("Done!");
         }
 
-        internal void TellMeAgain()
+        public void TellMeAgain()
         {
-            MailManager.Instance.m_notificationsList.Clear();
-            foreach (var mailMessage in m_mails)
+            Log.Add("TellMeAgain lock");
+            try
             {
-                MailManager.Instance.m_notificationsList.Add(mailMessage.Value.MessageID); 
+                MailManager.Instance.m_notificationsList.Clear();
+                foreach (var mailMessage in m_mails)
+                {
+                    MailManager.Instance.m_notificationsList.Add(mailMessage.Value.MessageID);
+                }
+                ShowNotifications();
             }
-            ShowNotifications();
+            catch (Exception e)
+            {
+                Log.Add(e);
+            }
         }
     }
 }

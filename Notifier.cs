@@ -17,19 +17,27 @@ namespace GmailNotifierClone
 
         public void ThreadProc()
         {
-            DateTime date = m_message.Date;
+            try
+            {
+                DateTime date = m_message.Date;
 
-            PopupData p = new PopupData();
-            p.CountAndDate = String.Format("{0} of {1} - {2:g}", m_number, MailManager.Instance.GetNewMailCount(), date);
-            p.From = m_message.From.DisplayName;
-            p.Header = m_message.Subject;
-            p.Text = m_message.Body;
+                PopupData p = new PopupData();
+                p.CountAndDate = String.Format("{0} of {1} - {2:G}", m_number, MailManager.Instance.GetNewMailCount(), date);
+                p.From = m_message.From.DisplayName;
+                p.Header = m_message.Subject;
+                p.Text = m_message.Body;
 
-            Log.Add("Show pop for: " + p.Header);
+                Log.Add("Show pop for: " + p.Header);
 
-            PopupForm pf = new PopupForm(p);
-            MainForm.Instance.Invoke((MethodInvoker) pf.Show);
-            Application.DoEvents();
+                PopupForm pf = new PopupForm(p);
+                MainForm.Instance.Invoke((MethodInvoker)pf.Show);
+                Application.DoEvents();
+            }
+            catch (Exception e)
+            {
+                Log.Add(e);
+            }
+
         }
     }
 }

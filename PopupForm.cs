@@ -45,7 +45,8 @@ namespace GmailNotifierClone
         private void timerSuicide_Tick(object sender, EventArgs e)
         {
             Log.Add("Popup suicide!");
-            Close();
+            this.BeginInvoke(new MethodInvoker(Close));
+            Application.DoEvents();
         }
     }
 }
