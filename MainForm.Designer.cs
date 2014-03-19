@@ -36,7 +36,10 @@
             this.checkMailNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
-            this.tellAgainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markAllAsReadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,22 +69,23 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.checkMailNowToolStripMenuItem,
-            this.exitToolStripMenuItem1,
-            this.tellAgainToolStripMenuItem});
+            this.markAllAsReadToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.exitToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(162, 98);
             // 
             // checkMailNowToolStripMenuItem
             // 
             this.checkMailNowToolStripMenuItem.Name = "checkMailNowToolStripMenuItem";
-            this.checkMailNowToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.checkMailNowToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.checkMailNowToolStripMenuItem.Text = "Check Mail Now";
             this.checkMailNowToolStripMenuItem.Click += new System.EventHandler(this.checkMailNowToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
@@ -95,12 +99,34 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // tellAgainToolStripMenuItem
+            // markAllAsReadToolStripMenuItem
             // 
-            this.tellAgainToolStripMenuItem.Name = "tellAgainToolStripMenuItem";
-            this.tellAgainToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.tellAgainToolStripMenuItem.Text = "Tell again";
-            this.tellAgainToolStripMenuItem.Click += new System.EventHandler(this.tellAgainToolStripMenuItem_Click);
+            this.markAllAsReadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lastToolStripMenuItem,
+            this.allToolStripMenuItem});
+            this.markAllAsReadToolStripMenuItem.Name = "markAllAsReadToolStripMenuItem";
+            this.markAllAsReadToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.markAllAsReadToolStripMenuItem.Text = "Mark As Read";
+            this.markAllAsReadToolStripMenuItem.Click += new System.EventHandler(this.markAllAsReadToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(160, 6);
+            // 
+            // lastToolStripMenuItem
+            // 
+            this.lastToolStripMenuItem.Name = "lastToolStripMenuItem";
+            this.lastToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lastToolStripMenuItem.Text = "Last";
+            this.lastToolStripMenuItem.Click += new System.EventHandler(this.lastToolStripMenuItem_Click);
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.allToolStripMenuItem.Text = "All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -126,7 +152,10 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem checkMailNowToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tellAgainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem markAllAsReadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lastToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }
 

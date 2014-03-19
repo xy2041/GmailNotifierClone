@@ -102,13 +102,13 @@ namespace GmailNotifierClone
                     foreach (Lazy<MailMessage> message in messages)
                     {
                         MailMessage m = message.Value;
-                        newMailIdsList.Add(m.MessageID);
+                        newMailIdsList.Add(m.Uid);
 
-                        if (!MailManager.Instance.m_mails.ContainsKey(m.MessageID))
+                        if (!MailManager.Instance.m_mails.ContainsKey(m.Uid))
                         {
-                            Log.Add("Schedule notification");
-                            MailManager.Instance.m_mails.Add(m.MessageID, m);
-                            MailManager.Instance.m_notificationsList.Add(m.MessageID);
+                            Log.Add("Schedule notification for message with id: " + m.Uid);
+                            MailManager.Instance.m_mails.Add(m.Uid, m);
+                            MailManager.Instance.m_notificationsList.Add(m.Uid);
                         }
                     }
 
@@ -189,7 +189,7 @@ namespace GmailNotifierClone
                 MailManager.Instance.m_notificationsList.Clear();
                 foreach (var mailMessage in m_mails)
                 {
-                    MailManager.Instance.m_notificationsList.Add(mailMessage.Value.MessageID);
+                    MailManager.Instance.m_notificationsList.Add(mailMessage.Value.Uid);
                 }
                 ShowNotifications();
             }
@@ -197,6 +197,40 @@ namespace GmailNotifierClone
             {
                 Log.Add(e);
             }
+        }
+
+        public void MarkAsRead(bool all)
+        {
+            try
+            {
+                using (
+                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", Settings.Login, Settings.Password,
+                        AE.Net.Mail.ImapClient.AuthMethods.Login, 993, true))
+                {
+                    imap.SelectMailbox("INBOX");
+                    if (all)
+                    {
+                        foreach (var mailMessage in m_mails)
+                        {
+                            imap.Store("UID " + mailMessage.Value.Uid, true, "\\Seen");
+                        }
+                    }
+                    else
+                    {
+                        if (m_mails.Count > 0)
+                        {
+                            var lastMail = m_mails.Values.OrderBy(i => i.Date).FirstOrDefault();
+                            //var lastMail2 = m_mails.Values.OrderByDescending(i => i.Date).FirstOrDefault();
+                            imap.Store("UID " + lastMail.Uid, true, "\\Seen");
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Log.Add(ex);
+            }
+
         }
     }
 }

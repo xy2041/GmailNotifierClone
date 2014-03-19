@@ -47,7 +47,8 @@ namespace GmailNotifierClone
         {
             //http://stackoverflow.com/questions/12657792/how-to-securely-save-username-password-local
 
-            MailManager.Instance.CheckAndNotify();
+            //MailManager.Instance.MarkAsRead();
+
         }
 
         private void trayIcon_DoubleClick(object sender, EventArgs e)
@@ -83,6 +84,21 @@ namespace GmailNotifierClone
         private void tellAgainToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MailManager.Instance.TellMeAgain();
+        }
+
+        private void markAllAsReadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lastToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MailManager.Instance.MarkAsRead(false);
+        }
+
+        private void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MailManager.Instance.MarkAsRead(true);
         }
     }
 }
