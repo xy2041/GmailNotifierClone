@@ -138,6 +138,39 @@
     <EmbeddedResource Include="Assets\gnotify_4.ico" />
     <EmbeddedResource Include="Assets\gnotify_5.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_5.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_6.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_7.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_8.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\tray_ico_9.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

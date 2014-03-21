@@ -79,8 +79,18 @@ namespace GmailNotifierClone
                     var resources = new System.ComponentModel.ComponentResourceManager(typeof (Assets));
                     if (messages.Any())
                     {
-                        MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject("gnotify_2")));
-                        MainForm.Instance.trayIcon.Text = "New mail: " + messages.Count();
+                        int messCount = messages.Count();
+                        MainForm.Instance.trayIcon.Text = "New mail: " + messCount;
+
+                        if (messCount > 0 && messCount <= 9)
+                        {
+                            string icoName = String.Format("tray_ico_{0}", messCount);
+                            MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject(icoName)));
+                        }
+                        else
+                        {
+                            MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_2")));
+                        }
                     }
                     else
                     {
