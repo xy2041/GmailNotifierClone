@@ -1,6 +1,6 @@
 ﻿namespace GmailNotifierClone
 {
-    partial class AuthForm
+    partial class OptionsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbLogin = new System.Windows.Forms.TextBox();
-            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.cbUseAsMailTo = new System.Windows.Forms.CheckBox();
+            this.cbAutorun = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // tbLogin
+            // cbUseAsMailTo
             // 
-            this.tbLogin.Location = new System.Drawing.Point(12, 12);
-            this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Size = new System.Drawing.Size(156, 20);
-            this.tbLogin.TabIndex = 0;
-            this.tbLogin.Text = "xy2041@gmail.com";
+            this.cbUseAsMailTo.AutoSize = true;
+            this.cbUseAsMailTo.Location = new System.Drawing.Point(12, 12);
+            this.cbUseAsMailTo.Name = "cbUseAsMailTo";
+            this.cbUseAsMailTo.Size = new System.Drawing.Size(184, 17);
+            this.cbUseAsMailTo.TabIndex = 0;
+            this.cbUseAsMailTo.Text = "Use Gmail for internet mailto: links";
+            this.cbUseAsMailTo.UseVisualStyleBackColor = true;
             // 
-            // tbPassword
+            // cbAutorun
             // 
-            this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbPassword.Location = new System.Drawing.Point(12, 38);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.PasswordChar = '•';
-            this.tbPassword.Size = new System.Drawing.Size(156, 22);
-            this.tbPassword.TabIndex = 1;
+            this.cbAutorun.AutoSize = true;
+            this.cbAutorun.Location = new System.Drawing.Point(12, 35);
+            this.cbAutorun.Name = "cbAutorun";
+            this.cbAutorun.Size = new System.Drawing.Size(140, 17);
+            this.cbAutorun.TabIndex = 1;
+            this.cbAutorun.Text = "Run at Windows startup";
+            this.cbAutorun.UseVisualStyleBackColor = true;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(93, 99);
+            this.btnOk.Location = new System.Drawing.Point(12, 58);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
@@ -63,8 +66,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(12, 99);
+            this.btnCancel.Location = new System.Drawing.Point(93, 58);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -72,18 +74,22 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // AuthForm
+            // OptionsForm
             // 
-            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(278, 151);
+            this.ClientSize = new System.Drawing.Size(210, 98);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.tbPassword);
-            this.Controls.Add(this.tbLogin);
-            this.Name = "AuthForm";
+            this.Controls.Add(this.cbAutorun);
+            this.Controls.Add(this.cbUseAsMailTo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "OptionsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "OptionsForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OptionsForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,8 +97,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbLogin;
-        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.CheckBox cbUseAsMailTo;
+        private System.Windows.Forms.CheckBox cbAutorun;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
     }

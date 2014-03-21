@@ -12,14 +12,7 @@ namespace GmailNotifierClone
 
         public static MainForm Instance
         {
-            get
-            {
-                if (m_instance == null)
-                {
-                    m_instance = new MainForm();
-                }
-                return m_instance;
-            }
+            get { return m_instance ?? (m_instance = new MainForm()); }
         }
 
         private MainForm()
@@ -99,6 +92,11 @@ namespace GmailNotifierClone
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MailManager.Instance.MarkAsRead(true);
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsForm.Inctance.Show();
         }
     }
 }

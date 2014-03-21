@@ -11,9 +11,16 @@ namespace GmailNotifierClone
 {
     public partial class AuthForm : Form
     {
-        public AuthForm()
+        private static AuthForm m_instance;
+
+        private AuthForm()
         {
             InitializeComponent();
+        }
+
+        public static AuthForm Instance
+        {
+            get { return m_instance ?? (m_instance = new AuthForm()); }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -27,6 +34,11 @@ namespace GmailNotifierClone
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            m_instance = null;
         }
     }
 }

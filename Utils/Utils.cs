@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace GmailNotifierClone
@@ -13,56 +11,6 @@ namespace GmailNotifierClone
         private static object m_lock = new object();
 
         private static readonly string ApplicationDir = AppDomain.CurrentDomain.BaseDirectory;
-
-        public static string GetSqlQueryText(string fileName)
-        {
-            string fullPath = Path.Combine(ApplicationDir, "sql", fileName);
-            return File.ReadAllText(fullPath);
-        }
-
-        public static int? ToNullableInt32(this string s)
-        {
-            int i;
-            if (Int32.TryParse(s, out i)) return i;
-
-            Log.Add(String.Format("Format exception: ToNullableInt32({0})", s), Loglevel.Warning, false);
-            return null;
-        }
-
-        public static bool? ToNullableBool(this string s)
-        {
-            bool i;
-            if (Boolean.TryParse(s, out i)) return i;
-            Log.Add(String.Format("Format exception: ToNullableBool({0})", s), Loglevel.Warning, false);
-            return null;
-        }
-
-        public static string ToGroupedDigits(this int? s)
-        {
-            if (s == null) return String.Empty;
-
-            Decimal d = (int)s;
-            return d.ToString("#,##0");
-        }
-
-        public static string ToLocalizedBool(this bool? s)
-        {
-            if (s == null) return "?";
-            return (bool) s ? "Да" : "Нет";
-        }
-
-        public static decimal? ToNullableDecimal(this string s)
-        {
-            decimal i;
-            if (Decimal.TryParse(s, out i)) return i;
-            Log.Add(String.Format("Format exception: ToNullableDecimal({0})", s), Loglevel.Warning, false);
-            return null;
-        }
-
-        public static String ToNullableString(this object s)
-        {
-            return s == null ? null : s.ToString();
-        }
 
         public static Color ToColor(this Loglevel level)
         {

@@ -22,14 +22,7 @@ namespace GmailNotifierClone
 
         public static MailManager Instance
         {
-            get
-            {
-                if (m_instance == null)
-                {
-                    m_instance = new MailManager();
-                }
-                return m_instance;
-            }
+            get { return m_instance ?? (m_instance = new MailManager()); }
         }
 
         private Dictionary<string, MailMessage> m_mails = new Dictionary<string, MailMessage>();
@@ -49,8 +42,7 @@ namespace GmailNotifierClone
 
             if (Settings.Login == "" || Settings.Password == "")
             {
-                AuthForm f = new AuthForm();
-                f.Show();
+                AuthForm.Instance.Show();
                 return;
             }
 
@@ -132,8 +124,7 @@ namespace GmailNotifierClone
                 if (e.Message.Contains("[AUTHENTICATIONFAILED] Invalid credentials"))
                 {
                     Settings.Password = "";
-                    AuthForm f = new AuthForm();
-                    MainForm.Instance.Invoke((MethodInvoker) f.Show);
+                    MainForm.Instance.Invoke((MethodInvoker) AuthForm.Instance.Show);
                 }
                 try
                 {

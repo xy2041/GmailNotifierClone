@@ -51,45 +51,55 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
-    <Compile Include="AuthForm.cs">
+    <Compile Include="Forms\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthForm.Designer.cs">
+    <Compile Include="Forms\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Log.cs" />
-    <Compile Include="Loglevel.cs" />
-    <Compile Include="MailManager.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Log\Log.cs" />
+    <Compile Include="Log\Loglevel.cs" />
+    <Compile Include="Classes\MailManager.cs" />
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Notifier.cs" />
-    <Compile Include="PopupData.cs" />
-    <Compile Include="PopupForm.cs">
+    <Compile Include="Classes\Notifier.cs" />
+    <Compile Include="Forms\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PopupForm.Designer.cs">
+    <Compile Include="Forms\OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\PopupData.cs" />
+    <Compile Include="Forms\PopupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopupForm.Designer.cs">
       <DependentUpon>PopupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Utils\Utils.cs" />
     <EmbeddedResource Include="Assets.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Assets.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthForm.resx">
+    <EmbeddedResource Include="Forms\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PopupForm.resx">
+    <EmbeddedResource Include="Forms\OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopupForm.resx">
       <DependentUpon>PopupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
