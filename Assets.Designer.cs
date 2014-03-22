@@ -63,6 +63,16 @@ namespace GmailNotifierClone {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon blank_ico_max {
+            get {
+                object obj = ResourceManager.GetObject("blank_ico_max", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon gnotify_2 {
             get {
                 object obj = ResourceManager.GetObject("gnotify_2", resourceCulture);

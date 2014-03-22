@@ -87,6 +87,10 @@ namespace GmailNotifierClone
                             string icoName = String.Format("tray_ico_{0}", messCount);
                             MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon) (resources.GetObject(icoName)));
                         }
+                        else if (messCount > 9)
+                        {
+                            MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("blank_ico_max")));
+                        }
                         else
                         {
                             MainForm.Instance.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_2")));
@@ -225,6 +229,7 @@ namespace GmailNotifierClone
                             imap.Store("UID " + lastMail.Uid, true, "\\Seen");
                         }
                     }
+
                 }
             }
             catch (System.Exception ex)
