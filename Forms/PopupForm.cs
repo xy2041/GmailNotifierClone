@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using System.Windows.Forms;
+using GmailNotifierClone.Forms;
 
 namespace GmailNotifierClone
 {

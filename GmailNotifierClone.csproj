@@ -57,6 +57,12 @@
     <Compile Include="Forms\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NoAltTabForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NoAltTabForm.Designer.cs">
+      <DependentUpon>NoAltTabForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Log\Log.cs" />
     <Compile Include="Log\Loglevel.cs" />
     <Compile Include="Classes\MailManager.cs" />

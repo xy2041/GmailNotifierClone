@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using GmailNotifierClone.Forms;
 
 
 namespace GmailNotifierClone
 {
-    public partial class MainForm : Form
+    public partial class MainForm : NoAltTabForm
     {
         public System.Windows.Forms.NotifyIcon trayIcon;
 
@@ -20,8 +21,9 @@ namespace GmailNotifierClone
             InitializeComponent();
             this.Visible = false;
             this.Hide();
+            //tas = false;
             this.WindowState = FormWindowState.Minimized;
-
+            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("gnotify_4")));
             this.trayIcon.Text = "No unread mail";
