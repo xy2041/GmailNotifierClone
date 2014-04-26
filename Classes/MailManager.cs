@@ -107,14 +107,21 @@ namespace GmailNotifierClone
                     int cnt = 0;
                     foreach (Lazy<MailMessage> message in messages)
                     {
-                        MailMessage m = message.Value;
-                        newMailIdsList.Add(m.Uid);
-
-                        if (!MailManager.Instance.m_mails.ContainsKey(m.Uid))
+                        try
                         {
-                            Log.Add("Schedule notification for message with id: " + m.Uid);
-                            MailManager.Instance.m_mails.Add(m.Uid, m);
-                            MailManager.Instance.m_notificationsList.Add(m.Uid);
+                            MailMessage m = message.Value;
+                            newMailIdsList.Add(m.Uid);
+
+                            if (!MailManager.Instance.m_mails.ContainsKey(m.Uid))
+                            {
+                                Log.Add("Schedule notification for message with id: " + m.Uid);
+                                MailManager.Instance.m_mails.Add(m.Uid, m);
+                                MailManager.Instance.m_notificationsList.Add(m.Uid);
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Log.Add(ex);
                         }
                     }
 
