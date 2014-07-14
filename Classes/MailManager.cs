@@ -135,8 +135,10 @@ namespace GmailNotifierClone
                     }
                 }
 
-
-                ShowNotifications();
+                if (!MainForm.IsForegroundWwindowFullScreen())
+                {
+                    ShowNotifications();
+                }
             }
             catch
                 (Exception
