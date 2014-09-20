@@ -156,7 +156,7 @@
             this.Text = "MainForm";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
-
+           
         }
 
         #endregion

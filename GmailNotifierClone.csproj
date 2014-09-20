@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Forms\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +119,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

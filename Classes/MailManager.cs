@@ -40,7 +40,7 @@ namespace GmailNotifierClone
                 return;
             }
 
-            if (Settings.Login == "" || Settings.Password == "")
+            if (Settings.Instance.Login == "" || Settings.Instance.Password == "")
             {
                 AuthForm.Instance.Show();
                 return;
@@ -64,7 +64,7 @@ namespace GmailNotifierClone
             {
                 Log.Add("Checking mailbox...");
                 using (
-                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", Settings.Login, Settings.Password,
+                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", Settings.Instance.Login, Settings.Instance.Password,
                         AE.Net.Mail.ImapClient.AuthMethods.Login, 993, true))
                 {
                     imap.SelectMailbox("INBOX");
@@ -146,7 +146,8 @@ namespace GmailNotifierClone
             {
                 if (e.Message.Contains("[AUTHENTICATIONFAILED] Invalid credentials"))
                 {
-                    Settings.Password = "";
+                    Settings.Instance.Password = "";
+                    Settings.Instance.Save();
                     MainForm.Instance.Invoke((MethodInvoker) AuthForm.Instance.Show);
                 }
                 try
@@ -177,7 +178,16 @@ namespace GmailNotifierClone
             {
                 offset = MailManager.Instance.GetNewMailCount() - MailManager.Instance.m_notificationsList.Count;
             }
-            for (int index = 0; index < MailManager.Instance.m_notificationsList.Count; index++)
+
+            int index = 0;
+            int mailCount = MailManager.Instance.m_notificationsList.Count;
+
+            if (mailCount > 5)
+            {
+                index = mailCount - 5 - 1;
+            }
+
+            for ( ;index < MailManager.Instance.m_notificationsList.Count; index++)
             {
                 var s = MailManager.Instance.m_notificationsList[index];
                 Notifier tws = new Notifier(MailManager.Instance.m_mails[s], index + 1 + offset);
@@ -218,7 +228,7 @@ namespace GmailNotifierClone
             try
             {
                 using (
-                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", Settings.Login, Settings.Password,
+                    var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", Settings.Instance.Login, Settings.Instance.Password,
                         AE.Net.Mail.ImapClient.AuthMethods.Login, 993, true))
                 {
                     imap.SelectMailbox("INBOX");

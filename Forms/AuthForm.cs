@@ -11,6 +11,7 @@ namespace GmailNotifierClone
 {
     public partial class AuthForm : Form
     {
+        private static bool m_isFirstRun = true;
         private static AuthForm m_instance;
 
         private AuthForm()
@@ -25,20 +26,37 @@ namespace GmailNotifierClone
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            Settings.Login = tbLogin.Text;
-            Settings.Password = tbPassword.Text;
+            Settings.Instance.Login = tbLogin.Text;
+            Settings.Instance.Password = tbPassword.Text;
+            Settings.Instance.IsNeedToSaveAuth = cbSaveAuth.Checked;
+            Settings.Instance.Save();
+
             Close();
             MailManager.Instance.CheckAndNotify();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             m_instance = null;
+        }
+
+        private void AuthForm_Load(object sender, EventArgs e)
+        {
+            if (m_isFirstRun == true)
+            {
+                m_isFirstRun = false;
+                if (Settings.Instance.Login.Length > 0 && Settings.Instance.Password.Length > 0 &&
+                    Settings.Instance.IsNeedToSaveAuth == true)
+                {
+                    Close();
+                    MailManager.Instance.CheckAndNotify(); 
+                }
+            }
         }
     }
 }
